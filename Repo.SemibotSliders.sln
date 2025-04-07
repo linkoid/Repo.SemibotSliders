@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemibotSliders", "SemibotSliders\SemibotSliders.csproj", "{91DC147F-0840-41FF-B21C-CB1E564054FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91DC147F-0840-41FF-B21C-CB1E564054FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91DC147F-0840-41FF-B21C-CB1E564054FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91DC147F-0840-41FF-B21C-CB1E564054FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91DC147F-0840-41FF-B21C-CB1E564054FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AA156A7-8EEC-4929-AEF4-8E8E9EBC6FB3}
+	EndGlobalSection
+EndGlobal

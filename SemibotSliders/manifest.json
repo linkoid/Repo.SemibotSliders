@@ -1,0 +1,10 @@
+{
+ "name": "SemibotSliders",
+ "version_number": "0.4.1",
+ "website_url": "https://github.com/linkoid/Repo.SemibotSliders",
+ "description": "Adds body slider customization to semibots",
+ "dependencies": [
+  "BepInEx-BepInExPack-5.4.2100",
+  "nickklmao-MenuLib-2.2.0"
+ ]
+}
