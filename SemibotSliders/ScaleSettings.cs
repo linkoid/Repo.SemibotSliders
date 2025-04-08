@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sirenix.Utilities;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -42,7 +43,28 @@ internal struct ScaleSettings
 
     public ScaleSettings Clamp(float min, float max)
     {
+        return Clamp(Vector3.one * min, Vector3.one * max);
+    }
 
+    public ScaleSettings Clamp(Vector3 min, Vector3 max)
+    {
+        return new ScaleSettings()
+        {
+            LegLBot      = LegLBot     .Clamp(min, max),
+            LegLTop      = LegLTop     .Clamp(min, max),
+            LegRBot      = LegRBot     .Clamp(min, max),
+            LegRTop      = LegRTop     .Clamp(min, max),
+            BodyBot      = BodyBot     .Clamp(min, max),
+            BodyBotScale = BodyBotScale.Clamp(min, max),
+            BodyTop      = BodyTop     .Clamp(min, max),
+            BodyTopScale = BodyTopScale.Clamp(min, max),
+            ArmL         = ArmL        .Clamp(min, max),
+            ArmR         = ArmR        .Clamp(min, max),
+            HeadBot      = HeadBot     .Clamp(min, max),
+            HeadTop      = HeadTop     .Clamp(min, max),
+            EyeL         = EyeL        .Clamp(min, max),
+            EyeR         = EyeR        .Clamp(min, max),
+        };
     }
 
     public Vector3[] ToArray()

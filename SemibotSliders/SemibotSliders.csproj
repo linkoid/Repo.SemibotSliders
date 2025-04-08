@@ -5,7 +5,7 @@
     <LangVersion>11</LangVersion>
     <Nullable>enable</Nullable>
     <Authors>linkoid</Authors>
-    <Version>0.4.2</Version>
+    <Version>0.5.0</Version>
     <RootNamespace>Linkoid.Repo.SemibotSliders</RootNamespace>
   </PropertyGroup>
 

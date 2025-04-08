@@ -32,7 +32,7 @@ internal class BodySliderMenu
     {
         scaleSettings = UserConfigModel.Instance.GetScaleSettings();
 
-        page = MenuAPI.CreateREPOPopupPage("Semibot Sliders", REPOPopupPage.PresetSide.Left, shouldCachePage: false);
+        page = MenuAPI.CreateREPOPopupPage("Semibot Sliders", REPOPopupPage.PresetSide.Left, shouldCachePage: false, pageDimmerVisibility: true);
 
         MenuAPI.CreateREPOButton("Confirm", Close, page.transform, new Vector2(66f, 18f));
         MenuAPI.CreateREPOButton("Revert", Revert, page.transform, new Vector2(260f, 18f));
@@ -42,8 +42,10 @@ internal class BodySliderMenu
         currentSliders = new();
         foreach (FieldInfo field in fields)
         {
-            var slider = new REPOVector3SliderModel(field.Name, "", value => OnValueChanged(field, value), page.scrollView, 
-                Vector3.zero, Vector3.one * 3, defaultValue: (Vector3)field.GetValue(scaleSettings));
+            var min = Vector3.one * SemibotSliders.ConfigModel.ScaleMinimum.Value;
+            var max = Vector3.one * SemibotSliders.ConfigModel.ScaleMaximum.Value;
+            var slider = new REPOVector3SliderModel(field.Name, "", value => OnValueChanged(field, value), page.scrollView,
+                min, max, defaultValue: (Vector3)field.GetValue(scaleSettings));
             currentSliders.Add(field, slider);
         }
 

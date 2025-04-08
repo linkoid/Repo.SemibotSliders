@@ -1,6 +1,6 @@
 {
  "name": "SemibotSliders",
- "version_number": "0.4.1",
+ "version_number": "0.5.0",
  "website_url": "https://github.com/linkoid/Repo.SemibotSliders",
  "description": "Adds body slider customization to semibots",
  "dependencies": [

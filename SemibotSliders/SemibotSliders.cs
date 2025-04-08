@@ -1,13 +1,16 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using MenuLib;
 using MenuLib.MonoBehaviors;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Linkoid.Repo.SemibotSliders;
 
-[BepInPlugin("Linkoid.Repo.SemibotSliders", "Semibot Sliders", "0.4.1")]
+[BepInPlugin("Linkoid.Repo.SemibotSliders", "Semibot Sliders", "0.5")]
 [BepInDependency("nickklmao.menulib", "2.2")]
 public class SemibotSliders : BaseUnityPlugin
 {
@@ -29,6 +32,8 @@ public class SemibotSliders : BaseUnityPlugin
         this.gameObject.hideFlags = HideFlags.HideAndDontSave;
 
         ConfigModel = new ModConfigModel(Config);
+        Config.SettingChanged += OnConfigSettingChanged;
+
         UserConfigModel.InitGlobalUserConfig();
 
         Patch();
@@ -58,7 +63,9 @@ public class SemibotSliders : BaseUnityPlugin
 
         MenuAPI.AddElementToColorMenu(parent =>
         {
-            var button = MenuAPI.CreateREPOButton("Semibot Sliders", bodySliderMenu.Open, parent, new Vector3(495f, 45f, 0f));
+            var menuPageColor = parent.GetComponent<MenuPageColor>();
+
+            var button = MenuAPI.CreateREPOButton("Semibot Sliders", () => { menuPageColor.ConfirmButton(); bodySliderMenu.Open(); }, parent, new Vector3(495f, 45f, 0f));
             button.menuButton.colorClick = Color.white;
             button.menuButton.colorHover = new Color(1f, 0.9022f, 0f, 1f);
             button.menuButton.colorNormal = new Color(1f, 0.594f, 0f, 1f);
@@ -77,8 +84,11 @@ public class SemibotSliders : BaseUnityPlugin
         Harmony?.UnpatchSelf();
     }
 
-    private void Update()
+    private void OnConfigSettingChanged(object sender, SettingChangedEventArgs e)
     {
-        // Code that runs every frame goes here
+        foreach (var playerAvatarSliders in Object.FindObjectsOfType<PlayerAvatarSliders>())
+        {
+            playerAvatarSliders.SetDirty();
+        }
     }
 }

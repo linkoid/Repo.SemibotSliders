@@ -34,6 +34,8 @@ internal class PlayerAvatarSliders : MonoBehaviour
     }
     private ScaleSettings _scaleSettings = ScaleSettings.Default;
     private bool isDirty = true;
+
+    private ScaleSettings appliedScaleSettings = ScaleSettings.Default;
     
 
     [HarmonyPostfix, HarmonyPatch(typeof(PlayerAvatarVisuals), nameof(PlayerAvatarVisuals.Start))]
@@ -68,6 +70,11 @@ internal class PlayerAvatarSliders : MonoBehaviour
     void LateUpdate()
     {
         ApplyRelativeScales();
+    }
+
+    internal void SetDirty()
+    {
+        isDirty = true;
     }
 
     private void FindAvatarTransforms()
@@ -113,17 +120,19 @@ internal class PlayerAvatarSliders : MonoBehaviour
             transform.localScale = scale;
         }
 
-        Set(bodyBot, ScaleSettings.BodyBot);
-        Set(bodyTop, ScaleSettings.BodyTop);
+        appliedScaleSettings = ScaleSettings.Clamp(
+            SemibotSliders.ConfigModel.ScaleMinimum.Value,
+            SemibotSliders.ConfigModel.ScaleMaximum.Value
+        );
 
-        Set(headBot, ScaleSettings.HeadBot);
-        Set(headTop, ScaleSettings.HeadTop);
-
-        Set(eyeL   , ScaleSettings.EyeL   );
-        Set(eyeR   , ScaleSettings.EyeR   );
-
-        Set(armL, ScaleSettings.ArmL);
-        Set(armR, ScaleSettings.ArmR);
+        Set(bodyBot, appliedScaleSettings.BodyBot);
+        Set(bodyTop, appliedScaleSettings.BodyTop);
+        Set(headBot, appliedScaleSettings.HeadBot);
+        Set(headTop, appliedScaleSettings.HeadTop);
+        Set(eyeL   , appliedScaleSettings.EyeL   );
+        Set(eyeR   , appliedScaleSettings.EyeR   );
+        Set(armL   , appliedScaleSettings.ArmL   );
+        Set(armR   , appliedScaleSettings.ArmR   );
     }
 
     private void ApplyRelativeScales()
@@ -136,12 +145,11 @@ internal class PlayerAvatarSliders : MonoBehaviour
             transform.localScale = localScale;
         }
         
-        Set(legLBot     , ScaleSettings.LegLBot     );
-        Set(legLTop     , ScaleSettings.LegLTop     );
-        Set(legRBot     , ScaleSettings.LegRBot     );
-        Set(legRTop     , ScaleSettings.LegRTop     );
-
-        Set(bodyBotScale, ScaleSettings.BodyBotScale);
-        Set(bodyTopScale, ScaleSettings.BodyTopScale);
+        Set(legLBot     , appliedScaleSettings.LegLBot     );
+        Set(legLTop     , appliedScaleSettings.LegLTop     );
+        Set(legRBot     , appliedScaleSettings.LegRBot     );
+        Set(legRTop     , appliedScaleSettings.LegRTop     );
+        Set(bodyBotScale, appliedScaleSettings.BodyBotScale);
+        Set(bodyTopScale, appliedScaleSettings.BodyTopScale);
     }
 }

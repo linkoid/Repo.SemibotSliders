@@ -1,7 +1,14 @@
 # Semibot Sliders
-**Work in Progress**
+**[ BETA ]** More features may be added in the future.
 
-Provides options for adjusting the maximum number of players in a room.
+Adds body slider customization to semibots.
+
+## Usage
+Body segment sizes can be customized via the `Semibot Sliders` button found in the change color menu.
+
+## Settings
+There are mod config settings to constrain the scaling of the body sliders.
+This can be used to locally limit the scaling of other players who may be using excessive values.
 
 ## Bugs / Contact
 The fastest way to contact me is via Discord.
