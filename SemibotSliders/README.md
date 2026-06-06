@@ -4,7 +4,7 @@
 Adds body slider customization to semibots.
 
 ## Usage
-Body segment sizes can be customized via the `Semibot Sliders` button found in the change color menu.
+Body segment sizes can be customized via the `Semibot Sliders` button found in the cosmetics menu.
 
 ## Settings
 There are mod config settings to constrain the scaling of the body sliders.
