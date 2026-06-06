@@ -61,15 +61,21 @@ public class SemibotSliders : BaseUnityPlugin
         //    button.menuButton.customColors = true;
         //});
 
-        MenuAPI.AddElementToColorMenu(parent =>
+        Logger.LogMessage("START!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        MenuAPIExtended.AddElementTo<MenuPageCosmetics>(parent =>
         {
-            var menuPageColor = parent.GetComponent<MenuPageColor>();
+            Logger.LogMessage("BUILDER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            var menuPageCosmetics = parent.GetComponent<MenuPageCosmetics>();
 
-            var button = MenuAPI.CreateREPOButton("Semibot Sliders", () => { menuPageColor.ConfirmButton(); bodySliderMenu.Open(); }, parent, new Vector3(495f, 45f, 0f));
+            var button = MenuAPI.CreateREPOButton("Semibot Sliders", () => { menuPageCosmetics.ConfirmButton(); bodySliderMenu.Open(); }, parent, new Vector3(160f, 359.5f, 0f));
+            button.overrideButtonSize = new Vector2(135f * 0.6f, 35f * 0.8f);
             button.menuButton.colorClick = Color.white;
             button.menuButton.colorHover = new Color(1f, 0.9022f, 0f, 1f);
             button.menuButton.colorNormal = new Color(1f, 0.594f, 0f, 1f);
             button.menuButton.customColors = true;
+            button.menuButton.buttonText.margin = new(5, 0, 5, 0);
+            button.menuButton.buttonText.enableAutoSizing = true;
+            button.menuButton.buttonText.characterWidthAdjustment = 25;
         });
     }
 

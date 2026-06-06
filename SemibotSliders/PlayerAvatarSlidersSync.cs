@@ -37,6 +37,7 @@ internal class PlayerAvatarSlidersSync : MonoBehaviour
         if (!SemiFunc.IsMultiplayer() || photonView.IsMine)
         {
             this.StartCoroutine(WaitForSteamID());
+            SetScaleSettings(UserConfigModel.Instance.GetScaleSettings());
         }
     }
 
@@ -51,9 +52,7 @@ internal class PlayerAvatarSlidersSync : MonoBehaviour
 
         if (SemiFunc.IsMultiplayer() || !SemiFunc.IsMainMenu())
         {
-            var scaleSettings = UserConfigModel.Instance.GetScaleSettings();
-            SemibotSliders.Logger.LogDebug(scaleSettings);
-            SetScaleSettings(scaleSettings);
+            SetScaleSettings(UserConfigModel.Instance.GetScaleSettings());
         }
     }
 

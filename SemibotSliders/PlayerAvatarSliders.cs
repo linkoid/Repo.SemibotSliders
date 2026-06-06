@@ -101,14 +101,21 @@ internal class PlayerAvatarSliders : MonoBehaviour
 
     private void MenuAvatarGetSliderSettingsFromRealAvatar()
     {
-        var realAvatar = playerAvatarVisuals.playerAvatar ?? PlayerAvatar.instance;
-        if (realAvatar?.playerAvatarVisuals?.TryGetComponent(out PlayerAvatarSliders realAvatarSliders) ?? false)
+        var realPlayerAvatarVisuals = (playerAvatarVisuals?.playerAvatar ?? PlayerAvatar.instance)?.playerAvatarVisuals;
+        if (realPlayerAvatarVisuals == null || realPlayerAvatarVisuals.isMenuAvatar || !realPlayerAvatarVisuals.isActiveAndEnabled
+            || realPlayerAvatarVisuals.playerAvatar.steamID == null)
+        {
+            realPlayerAvatarVisuals = null;
+        }
+
+        if (realPlayerAvatarVisuals?.TryGetComponent(out PlayerAvatarSliders realAvatarSliders) ?? false)
         {
             ScaleSettings = realAvatarSliders.ScaleSettings;
         }
         else
         {
             ScaleSettings = UserConfigModel.Instance.GetScaleSettings();
+            SemibotSliders.Logger.LogDebug($"Loaded ScaleSettings from UserConfigModel for {this}");
         }
     }
 
